@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use E5M2EffMA — in software or to train a model — please cite it as below."
+title: "E5M2EffMA: FP8 (E5M2 and E4M3) GEMM, GEMV and optimizer kernels for GPUs without native FP8"
+type: software
+authors:
+  - name: "srose69"
+repository-code: "https://github.com/srose69/e5m2effma"
+license: AGPL-3.0-only
+version: "0.1.0"
+date-released: "2026-10-20"
+keywords: [fp8, e5m2, e4m3, cuda, gemm, gemv, adamw, pascal, pytorch]

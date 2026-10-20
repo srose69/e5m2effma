@@ -1,0 +1,23 @@
+E5M2EffMA
+Copyright (C) 2026 srose69
+Home page: https://github.com/srose69/e5m2effma
+
+E5M2EffMA is free software: you can redistribute it and/or modify it under the terms of the GNU
+Affero General Public License, version 3 (LICENSE), together with the Linking and Attribution
+Exception (LICENSE-EXCEPTION). It is distributed WITHOUT ANY WARRANTY; see the AGPL for details.
+
+In short:
+  - Programs that use E5M2EffMA (link it, call it, load its Python bindings) may be distributed or
+    run as a service under any license, including proprietary ones.
+  - Changes to E5M2EffMA itself stay under the AGPL with the exception, with their source available,
+    and must be marked as modified.
+  - Every work that uses E5M2EffMA must show the attribution below (LICENSE-EXCEPTION, section 2).
+
+Attribution
+-----------
+Short form:  E5M2EffMA (https://github.com/srose69/e5m2effma)
+Long form:   This product uses E5M2EffMA, FP8 (E5M2 and E4M3) GEMM, GEMV and optimizer kernels for
+             GPUs without native FP8 (https://github.com/srose69/e5m2effma), Copyright (C) 2026 srose69.
+
+A request, not a condition: if you train or fine-tune a model with E5M2EffMA, a mention in the model
+card or paper ("trained with E5M2EffMA") is much appreciated. CITATION.cff has the citation.
