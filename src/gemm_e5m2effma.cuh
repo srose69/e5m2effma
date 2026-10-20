@@ -21,9 +21,9 @@ template <int BM_, int BN_, int BK_, int TM_, int TN_>
 struct GemmCfg {
   static constexpr int BM = BM_, BN = BN_, BK = BK_, TM = TM_, TN = TN_;
   static constexpr int TX = BM / TM, TY = BN / TN, NT = TX * TY, PAD = 4;  // lanes run along m
-  // resident blocks the register budget targets: 2 x 256 threads (<= 128 registers); 64-thread blocks
-  // (small problems, few blocks anyway) get 6 x 64, as 8 x 64 would make them spill
-  static constexpr int MINB = NT >= 512 ? 1 : NT >= 256 ? 512 / NT : 6;
+  // resident blocks the register budget targets: 512 threads (<= 128 registers), e.g. 2 x 256 or 4 x 128;
+  // 64-thread blocks (small problems, few blocks anyway) get 6 x 64, as 8 x 64 would make them spill
+  static constexpr int MINB = NT >= 512 ? 1 : NT >= 128 ? 512 / NT : 6;
   template <int TA, int TB> struct On { static constexpr bool value = true; };
 };
 
