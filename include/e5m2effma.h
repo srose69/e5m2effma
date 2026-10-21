@@ -42,7 +42,7 @@
 #ifndef E5M2EFFMA_H
 #define E5M2EFFMA_H
 
-#define E5M2EFFMA_VERSION "0.1.0"
+#define E5M2EFFMA_VERSION "0.2.0"
 
 #include <stddef.h>
 #include <cuda_runtime.h>

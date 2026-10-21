@@ -7,6 +7,8 @@ binds/python/e5m2effma/*.so
 binds/python/LICENSE
 binds/python/LICENSE-EXCEPTION
 binds/python/NOTICE
+binds/python/e5m2effma/include/
+binds/python/e5m2effma/src/
 __pycache__/
 # release tooling and artifacts (dev/release.sh -> dist/vX.Y.Z)
 dev/

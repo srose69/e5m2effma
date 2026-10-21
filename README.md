@@ -80,7 +80,8 @@ methodology and how to add your GPU: [docs/performance.md](docs/performance.md).
   weights.
 - **PyTorch bindings**: functional API, a `torch.optim` AdamW, `torch.e5m2effma`,
   `torch._scaled_mm` working on pre-Ada GPUs, and `Float8Tensor`, an FP8 tensor that carries its scale,
-  so `@`, `F.linear` and `nn.Linear` run FP8 matmuls unchanged.
+  so `@`, `F.linear` and `nn.Linear` run FP8 matmuls unchanged; `get_include()` for CUDA extensions that
+  build on the device-side FP8 codecs.
 - **Strict input checking** with readable errors in C (`e5ma_last_error`) and Python (`TypeError` /
   `ValueError` / `NotImplementedError`).
 - **Per-architecture tuning** (`make tune`) and a parallel build for all 12 architectures.

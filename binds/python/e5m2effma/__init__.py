@@ -42,8 +42,17 @@ e4m3 = torch.float8_e4m3fn
 if not hasattr(torch, "e5m2effma"):
     torch.e5m2effma = e5m2
 __all__ = ["matmul", "linear", "cast", "adam_step", "AdamW", "Float8Tensor", "quantize_linear_", "e5m2", "e4m3",
-           "torch_ops_enabled", "__version__"]
+           "torch_ops_enabled", "get_include", "__version__"]
 _FP8 = (torch.float8_e5m2, torch.float8_e4m3fn)
+
+
+def get_include() -> list:
+    """Directories with the C header ``e5m2effma.h`` and the device-side codecs ``e5m2effma.cuh`` (E5M2 / E4M3
+    decode and RNE encode), for CUDA extensions that build on this package: ``-I`` both and
+    ``#include <e5m2effma.cuh>``.  The code compiled from them is only consistent with this version of the
+    package."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    return [os.path.join(here, "include"), os.path.join(here, "src")]
 
 
 def matmul(a: torch.Tensor, b: torch.Tensor, *, out_dtype: Optional[torch.dtype] = None,

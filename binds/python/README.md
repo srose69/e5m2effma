@@ -56,6 +56,7 @@ opt = fx.AdamW(model.parameters(), lr=1e-3, weight_decay=0.01, state_dtype=torch
 | `cast(x, dtype, *, scale_inv, scale, amax)` | E5M2 / E4M3 / BF16 / FP16 / FP32 conversion, RNE, FP8 saturating; FP8 Inf / NaN codes decode exactly |
 | `adam_step(param, grad, exp_avg, exp_avg_sq, *, lr, betas, eps, weight_decay, step, adamw, ..., param_fp8)` | one fused step, optional E5M2 / E4M3 copy of the weights |
 | `AdamW(params, lr, betas, eps, weight_decay, *, adamw=True, state_dtype=None)` | `torch.optim` optimizer on `adam_step` |
+| `get_include()` | `[include, src]` directories of `e5m2effma.h` and the device-side codecs `e5m2effma.cuh`, for CUDA extensions built on this package; code compiled from them matches only this version |
 
 Scales are float32 CUDA tensors: one element (per tensor), or row-wise along the outer dimension of
 an FP8 operand — `scale_a` with M elements (one per row of `a`), `scale_b` / `scale_w` with N (one per

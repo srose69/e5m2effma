@@ -42,6 +42,13 @@ for f in LICENSE_FILES:
     src = os.path.join(ROOT, f)
     if os.path.isfile(src):
         with open(src) as i, open(os.path.join(HERE, f), "w") as o: o.write(i.read())
+# the C header and the device-side codecs go into the package (e5m2effma.get_include()) for extensions that
+# build on it; src/ next to include/ keeps e5m2effma.cuh's #include "../include/e5m2effma.h" valid
+HEADERS = {"include": ["e5m2effma.h"], "src": ["e5m2effma.cuh", "e5m2effma_tuned.h"]}
+for d, names in HEADERS.items():
+    os.makedirs(os.path.join(HERE, "e5m2effma", d), exist_ok=True)
+    for f in names:
+        with open(os.path.join(ROOT, d, f)) as i, open(os.path.join(HERE, "e5m2effma", d, f), "w") as o: o.write(i.read())
 
 
 def target_archs():
@@ -95,6 +102,7 @@ setup(
     long_description=open(os.path.join(HERE, "README.md")).read(),
     long_description_content_type="text/markdown",
     packages=find_packages(include=["e5m2effma", "e5m2effma.*"]),
+    package_data={"e5m2effma": [f"{d}/{f}" for d, names in HEADERS.items() for f in names]},
     ext_modules=[CUDAExtension("e5m2effma._C", ["csrc/e5m2effma_torch.cpp"], include_dirs=[os.path.join(ROOT, "include")],
                                extra_compile_args={"cxx": ["-O2"]})],
     cmdclass={"build_ext": Build},

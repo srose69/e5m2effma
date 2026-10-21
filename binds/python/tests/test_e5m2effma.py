@@ -417,3 +417,13 @@ def test_torch_ops_can_be_disabled():
     code = ("import torch, e5m2effma as fx; assert not fx.torch_ops_enabled(); assert torch.e5m2effma is torch.float8_e5m2")
     env = dict(__import__("os").environ, E5M2EFFMA_NO_TORCH_OPS="1")
     subprocess.run([sys.executable, "-c", code], check=True, env=env)
+
+
+def test_get_include():
+    """The header and the device-side codecs ship with the package, at the version of the package."""
+    import os, re
+    inc, src = fx.get_include()
+    hdr = open(os.path.join(inc, "e5m2effma.h")).read()
+    assert re.search(r'#define E5M2EFFMA_VERSION "([^"]+)"', hdr).group(1) == fx.__version__.split("+")[0]
+    assert os.path.isfile(os.path.join(src, "e5m2effma.cuh")) and os.path.isfile(os.path.join(src, "e5m2effma_tuned.h"))
+    assert '#include "../include/e5m2effma.h"' in open(os.path.join(src, "e5m2effma.cuh")).read()
